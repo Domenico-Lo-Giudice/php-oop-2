@@ -1,26 +1,30 @@
-<?php
+<?php 
 
-require_once __DIR__ . "/Product.php"
+require_once __DIR__ . "/Product.php";
+require_once __DIR__ . "/Traits/Weightable.php";
 
 class ProductBed extends Product {
-    public $weight_unit;
-    public $weight;
-    public $type;
-    
-    public function __construct(
+  use Weightable;
 
-        string $name,
-        float $price,
-        Category $category,
-        $weight_unit,
-        $weight,
-        $type
-    )
-    {
-        parent::__construct($name, $price, $category);
+  public $material;
 
-        $weight_unit = $weight_unit;
-        $weight = $weight;
-        $type = $type;
-    }
+  public function __construct(
+    string $name,
+    float $price,
+    Category $category,
+    string $weight_unit,
+    int $weight,
+    string $material
+  )
+  {
+    parent::__construct($name, $price, $category);
+
+    $this->weight_unit = $weight_unit;
+    $this->weight = $weight;
+    $this->material = $material;
+  }
+  
+  public function getTextClassname() {
+    return "Cuccia";
+  }
 }
